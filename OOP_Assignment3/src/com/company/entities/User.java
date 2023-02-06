@@ -5,14 +5,16 @@ public class User {
     private String name;
     private String surname;
     private boolean gender;
+    private double balance;
     public User(){}
-    public User(String name, String surname, boolean gender) {
+    public User(String name, String surname, boolean gender, double balance) {
         setName(name);
         setSurname(surname);
         setGender(gender);
+        setBalance(balance);
     }
     public User(int id, String name, String surname, boolean gender) {
-        this(name, surname, gender);
+        this(name, surname, gender, balance);
         setId(id);
     }
 
@@ -47,13 +49,23 @@ public class User {
         return gender;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", gender=" + gender +
+                ", gender=" + gender + '\'' +
+                ", balance=" + balance +
                 '}';
     }
 }
