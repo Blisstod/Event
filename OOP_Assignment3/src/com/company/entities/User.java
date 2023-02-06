@@ -13,7 +13,7 @@ public class User {
         setGender(gender);
         setBalance(balance);
     }
-    public User(int id, String name, String surname, boolean gender) {
+    public User(int id, String name, String surname, boolean gender, double balance) {
         this(name, surname, gender, balance);
         setId(id);
     }
