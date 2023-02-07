@@ -2,30 +2,86 @@ package com.company;
 
 
 import com.company.controllers.EventController;
-import com.company.controllers.UserController;
+import com.company.entities.User;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EventApplication {
-    private final UserController userController;
     private final EventController eventController;
     private final Scanner scanner;
+
+
+    public EventApplication(EventController eventController) {
+        this.eventController = eventController;
+        scanner = new Scanner(System.in);
+    }
+
     public void start() {
+        System.out.println();
+        System.out.println("You need register first");
+        System.out.println("Please enter your name");
+        String name = scanner.next();
+        System.out.println("Please enter your surname");
+        String surname = scanner.next();
+        System.out.println("Please enter your balance");
+        Double balance = scanner.nextDouble();
+
+        User user = new User(name, surname, balance);
+        System.out.println("User was created!");
         while (true) {
+
             System.out.println();
             System.out.println("Welcome to Our Event Application");
             System.out.println("Select option:");
-            System.out.println("1. Create user");
+            System.out.println("1. Show my balance");
             System.out.println("2. List of all events");
             System.out.println("3. Register to event");
             System.out.println("4. Crete an event");
             System.out.println("0. Exit");
             System.out.println();
-
+            try {
+                System.out.print("Enter option (1-4): ");
+                int option = scanner.nextInt();
+                if (option == 1) {
+                    showMyBalance(user);
+                } else if(option == 2){
+                    getAllEventsMenu();
+                } else if (option == 4) {
+                    createEventMenu();
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Input must be integer");
+                scanner.nextLine(); // to ignore incorrect input
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("*************************");
 
         }
+    }
+
+    public void showMyBalance(User user){
+        System.out.println("Your balance is: ");
+        System.out.println(user.getBalance());
+    }
+    public void createEventMenu(){
+        System.out.println("Please enter event name");
+        String name = scanner.next();
+        System.out.println("Please enter price");
+        Double price = scanner.nextDouble();
+        System.out.println("Please write description about this event");
+        String description = scanner.next();
+
+        String response = eventController.CreateEvent(name, price, description);
+        System.out.println(response);
+    }
+    public void getAllEventsMenu(){
+        String response = eventController.getAllEvents();
+        System.out.println(response);
     }
 }
