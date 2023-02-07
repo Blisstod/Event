@@ -1,14 +1,32 @@
 package com.company.entities;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Event {
+    private int id;
     private String name;
-    private int price;
+    private double price;
     private String description;
+    //private Calendar calendar = new GregorianCalendar();
     public Event(){}
-    public Event(String name, int price, String description){
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    public Event(String name, double price, String description /*Calendar calendar*/){
+        setName(name);
+        setPrice(price);
+        setDescription(description);
+        //this.calendar = calendar;
+    }
+    public Event(int id, String name, double price, String description /*Calendar calendar*/){
+        this(name, price, description /*calendar*/);
+        setId(id);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setName(String name) {
@@ -19,11 +37,11 @@ public class Event {
         return name;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -38,9 +56,11 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
+                //", calendar=" + calendar +
                 '}';
     }
 }
