@@ -2,18 +2,23 @@ package com.company;
 
 
 import com.company.controllers.EventController;
+import com.company.controllers.RegisterEventController;
+import com.company.entities.Event;
 import com.company.entities.User;
-
+import com.company.controllers.RegisterEventController;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class EventApplication {
     private final EventController eventController;
+    private RegisterEventController registerEventController;
     private final Scanner scanner;
 
 
-    public EventApplication(EventController eventController) {
+    public EventApplication(EventController eventController, RegisterEventController registerEventController) {
         this.eventController = eventController;
+        this.registerEventController =  registerEventController;
         scanner = new Scanner(System.in);
     }
 
@@ -37,17 +42,25 @@ public class EventApplication {
             System.out.println("1. Show my balance");
             System.out.println("2. List of all events");
             System.out.println("3. Register to event");
-            System.out.println("4. Crete an event");
+            System.out.println("4. Show registered events");
+            System.out.println("5. Refund the event");
+            System.out.println("6. Crete an event");
             System.out.println("0. Exit");
             System.out.println();
             try {
-                System.out.print("Enter option (1-4): ");
+                System.out.print("Enter option (1-6): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
                     showMyBalance(user);
                 } else if(option == 2){
                     getAllEventsMenu();
-                } else if (option == 4) {
+                } else if(option == 3){
+                    registerToEvent(user);
+                } else if(option == 4){
+                    getRegisteredEvents();
+                } else if(option == 5){
+                    refundEvent(user);
+                } else if (option == 6) {
                     createEventMenu();
                 } else {
                     break;
@@ -83,5 +96,27 @@ public class EventApplication {
     public void getAllEventsMenu(){
         String response = eventController.getAllEvents();
         System.out.println(response);
+    }
+    public void registerToEvent(User user){
+        getAllEventsMenu();
+        System.out.println("Choose event Id");
+        int regis_id = scanner.nextInt();
+        Event eventToRegister = eventController.FindEvent(regis_id);
+        registerEventController.registerEvent(eventToRegister, user);
+        System.out.println("Succesfully registered to: " + eventToRegister.getName());
+    }
+    public void refundEvent(User user){
+        getRegisteredEvents();
+        System.out.println("Choose event Id");
+        int refund_event_id = scanner.nextInt();
+        Event eventToRefund = eventController.FindEvent(refund_event_id);
+        registerEventController.refundEvent(eventToRefund, user);
+        System.out.println("Succesfully refunded event: " + eventToRefund.getName());
+    }
+    public void getRegisteredEvents(){
+        List<Event> registeredEvents = registerEventController.getRegisteredEvents();
+        for (Event event : registeredEvents) {
+            System.out.println(event.toString());
+        }
     }
 }
