@@ -99,24 +99,35 @@ public class EventApplication {
     }
     public void registerToEvent(User user){
         getAllEventsMenu();
-        System.out.println("Choose event Id");
+        System.out.println("Choose event Id.");
         int regis_id = scanner.nextInt();
         Event eventToRegister = eventController.FindEvent(regis_id);
         registerEventController.registerEvent(eventToRegister, user);
-        System.out.println("Succesfully registered to: " + eventToRegister.getName());
+        System.out.println("Succesfully registered to: " + eventToRegister.getName()+'.');
     }
     public void refundEvent(User user){
-        getRegisteredEvents();
-        System.out.println("Choose event Id");
-        int refund_event_id = scanner.nextInt();
-        Event eventToRefund = eventController.FindEvent(refund_event_id);
-        registerEventController.refundEvent(eventToRefund, user);
-        System.out.println("Succesfully refunded event: " + eventToRefund.getName());
+        if(registerEventController.getRegisteredEvents().isEmpty()){
+            System.out.println("No registered events to refund.");
+        }
+        else {
+            getRegisteredEvents();
+            System.out.println("Choose event Id.");
+            int refund_event_id = scanner.nextInt();
+            Event eventToRefund = eventController.FindEvent(refund_event_id);
+            System.out.println(registerEventController.refundEvent(eventToRefund, user)?
+                    "Succesfully refunded event: " +eventToRefund.getName():"couldn refund the event:"+eventToRefund.getName()+".");
+        }
+
     }
     public void getRegisteredEvents(){
         List<Event> registeredEvents = registerEventController.getRegisteredEvents();
-        for (Event event : registeredEvents) {
-            System.out.println(event.toString());
+        if(registeredEvents.isEmpty()){
+            System.out.println("Nothing to show, register to event first.");
+        }
+        else {
+            for (Event event : registeredEvents) {
+                System.out.println(event.toString());
+            }
         }
     }
 }

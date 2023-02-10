@@ -19,16 +19,27 @@ public class RegisterEventController {
         }
         return false;
     }
-    public void refundEvent(Event event, User user){
-        user.refund(event.getPrice());
-//        this.registeredEvents.remove(event);
-        List <Event> refundedEvents = new ArrayList<>();
-        for (Event validEvent : registeredEvents) {
-            if (validEvent.getId()!=event.getId()){
-                refundedEvents.add(event);
+    public boolean refundEvent(Event eventToRefund, User user){
+        boolean index = false;
+        for (Event event : this.getRegisteredEvents()) {
+            if (event.getId()==eventToRefund.getId()){
+                index = true;
+                break;
             }
         }
-        setRegisteredEvents(refundedEvents);
+        if(index) {
+            user.refund(eventToRefund.getPrice());
+    //        this.registeredEvents.remove(event);
+            List <Event> refundedEvents = new ArrayList<>();
+            for (Event validEvent : registeredEvents) {
+                if (validEvent.getId()!=eventToRefund.getId()){
+                    refundedEvents.add(eventToRefund);
+                }
+            }
+            setRegisteredEvents(refundedEvents);
+            return true;
+        }
+        return false;
     }
     public List<Event> getRegisteredEvents (){
         return registeredEvents;
