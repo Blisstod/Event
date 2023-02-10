@@ -17,6 +17,5 @@ public class Main {
         RegisterEventController registerEventController = new RegisterEventController();
         EventApplication app = new EventApplication(eventController,registerEventController);
         app.start();
-    //abay abay abay abay
     }
 }

@@ -22,15 +22,17 @@ public class EventController {
         List<Event> events = eventRepositories.getAllEvents();
         Event regisEvent = new Event();
         for (Event event : events) {
-                if (event.getId()==id){
-                    regisEvent = event;
-                    break;
-                }
+            if (event.getId()==id){
+                regisEvent = event;
+                break;
+            }
         }
         return regisEvent;
     }
     public String getAllEvents(){
         List<Event> events = eventRepositories.getAllEvents();
+        if (events.size() == 0)
+            return "There is no any events!" + '\n' + "You need add your own event or wait for other events!";
         return events.toString();
     }
 }

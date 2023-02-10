@@ -1,5 +1,6 @@
 package com.company.entities;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -8,6 +9,7 @@ public class Event {
     private String name;
     private double price;
     private String description;
+    private LocalDate date;
     //private Calendar calendar = new GregorianCalendar();
     public Event(){}
     public Event(String name, double price, String description /*Calendar calendar*/){
@@ -53,14 +55,16 @@ public class Event {
         return description;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                //", calendar=" + calendar +
-                '}';
+        return "{" + id + " | " + name + " | " + price + " | " + description + "}" + '\n';
     }
 }
