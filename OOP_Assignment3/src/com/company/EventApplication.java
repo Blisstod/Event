@@ -102,8 +102,9 @@ public class EventApplication {
         System.out.println("Choose event Id");
         int regis_id = scanner.nextInt();
         Event eventToRegister = eventController.FindEvent(regis_id);
-        registerEventController.registerEvent(eventToRegister, user);
-        System.out.println("Succesfully registered to: " + eventToRegister.getName());
+        if (registerEventController.registerEvent(eventToRegister, user))
+            System.out.println("Succesfully registered to: " + eventToRegister.getName());
+        else System.out.println("You do not have enough money to register " + eventToRegister.getName() + "!");
     }
     public void refundEvent(User user){
         getRegisteredEvents();
