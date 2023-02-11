@@ -15,7 +15,7 @@ public class Main {
         IEventRepositories eventRepositories = new EventRepositories(db);
         EventController eventController = new EventController(eventRepositories);
         RegisterEventController registerEventController = new RegisterEventController();
-        EventApplication app = new EventApplication(eventController,registerEventController);
+        EventApplication app = new EventApplication(eventController,registerEventController,eventRepositories);
         app.start();
     }
 }
