@@ -6,6 +6,9 @@ import com.company.controllers.RegisterEventController;
 import com.company.entities.Event;
 import com.company.entities.User;
 import com.company.controllers.RegisterEventController;
+import com.company.repositories.EventRepositories;
+import com.company.repositories.interfaces.IEventRepositories;
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -14,11 +17,12 @@ public class EventApplication {
     private final EventController eventController;
     private RegisterEventController registerEventController;
     private final Scanner scanner;
+    private final IEventRepositories eventRepositories;
 
-
-    public EventApplication(EventController eventController, RegisterEventController registerEventController) {
+    public EventApplication(EventController eventController, RegisterEventController registerEventController, IEventRepositories eventRepositories) {
         this.eventController = eventController;
         this.registerEventController =  registerEventController;
+        this.eventRepositories = eventRepositories;
         scanner = new Scanner(System.in);
     }
 
@@ -31,20 +35,20 @@ public class EventApplication {
         String surname = scanner.next();
         System.out.println("Please enter your balance");
         Double balance = scanner.nextDouble();
-
+        System.out.println();
+        System.out.println("Welcome to Our Event Application");
         User user = new User(name, surname, balance);
         System.out.println("User was created!");
         while (true) {
 
-            System.out.println();
-            System.out.println("Welcome to Our Event Application");
             System.out.println("Select option:");
             System.out.println("1. Show my balance");
             System.out.println("2. List of all events");
             System.out.println("3. Register to event");
             System.out.println("4. Show registered events");
             System.out.println("5. Refund the event");
-            System.out.println("6. Crete an event");
+            System.out.println("6. Create an event");
+            System.out.println("7. Delete an event");
             System.out.println("0. Exit");
             System.out.println();
             try {
@@ -60,8 +64,10 @@ public class EventApplication {
                     getRegisteredEvents();
                 } else if(option == 5){
                     refundEvent(user);
-                } else if (option == 6) {
+                } else if(option == 6) {
                     createEventMenu();
+                } else if(option == 7){
+                    deleteEventMenu();
                 } else {
                     break;
                 }
@@ -93,6 +99,21 @@ public class EventApplication {
         String response = eventController.CreateEvent(name, price, description);
         System.out.println(response);
     }
+
+    public void deleteEventMenu() {
+        System.out.println("Please, enter event's ID to delete");
+        int delId = scanner.nextInt();
+        List<Event> events = eventRepositories.getAllEvents();
+        for (int i = 0; i < events.size(); i++) {
+            if (events.get(i).getId() == delId) {
+                events.remove(i);
+                break;
+            }
+        }
+        String response = eventController.DeleteEvent(delId);
+        System.out.println(response);
+    }
+
     public void getAllEventsMenu(){
         String response = eventController.getAllEvents();
         System.out.println(response);

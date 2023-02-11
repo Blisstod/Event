@@ -12,15 +12,16 @@ import java.util.List;
 
 public class EventRepositories implements IEventRepositories {
     private final IDB db;
+    private Connection con = null;
     public EventRepositories(IDB db){this.db = db;}
 
     @Override
     public boolean CreateEvent(Event event) {
-        Connection con = null;
+        this.con = null;
         try {
-            con = db.getConnection();
+            this.con = db.getConnection();
             String sql = "INSERT INTO events(name,price,description) VALUES (?,?,?)";
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement st = this.con.prepareStatement(sql);
 
             st.setString(1, event.getName());
             st.setDouble(2, event.getPrice());
@@ -34,10 +35,31 @@ public class EventRepositories implements IEventRepositories {
             e.printStackTrace();
         } finally {
             try {
-                con.close();
+                this.con.close();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean DeleteEvent(Event event) {
+        try {
+            this.con = db.getConnection();
+            String sql = "DELETE FROM events WHERE id = ?";
+            PreparedStatement st = this.con.prepareStatement(sql);
+
+            st.setInt(1, event.getId());
+            st.executeUpdate();
+
+            st.close();
+            this.con.close();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error deleting event: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }

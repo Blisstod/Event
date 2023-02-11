@@ -29,7 +29,7 @@ public class RegisterEventController {
         }
         if(index) {
             user.refund(eventToRefund.getPrice());
-    //        this.registeredEvents.remove(event);
+            //        this.registeredEvents.remove(event);
             List <Event> refundedEvents = new ArrayList<>();
             for (Event validEvent : registeredEvents) {
                 if (validEvent.getId()!=eventToRefund.getId()){
