@@ -1,16 +1,52 @@
 package com.company.entities;
 
 public class User {
+    private int id;
+    private String login;
+    private String password;
     private String name;
     private String surname;
     private double balance;
     public User(double balance){
         setBalance(balance);
     }
-    public User(String name, String surname, double balance) {
+    public User(String name,String login,String password, String surname, double balance) {
+        setLogin(login);
+        setPassword(password);
         setName(name);
         setSurname(surname);
         setBalance(balance);
+    }
+    public User(int id,String login,String password,  String name, String surname, double balance) {
+        setId(id);
+        setLogin(login);
+        setPassword(password);
+        setName(name);
+        setSurname(surname);
+        setBalance(balance);
+    }
+    public void setId(int id){
+        this.id=id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setName(String name) {
@@ -47,6 +83,9 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
+                ", id='" + id + '\'' +
+                ", login='" + login + '\'' +
+                ", password=" + password +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", balance=" + balance +

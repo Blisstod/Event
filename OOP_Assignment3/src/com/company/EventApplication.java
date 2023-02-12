@@ -3,6 +3,7 @@ package com.company;
 
 import com.company.controllers.EventController;
 import com.company.controllers.RegisterEventController;
+import com.company.controllers.UserController;
 import com.company.entities.Event;
 import com.company.entities.User;
 import com.company.controllers.RegisterEventController;
@@ -12,11 +13,13 @@ import java.util.Scanner;
 
 public class EventApplication {
     private final EventController eventController;
+    private final UserController userController;
     private RegisterEventController registerEventController;
     private final Scanner scanner;
 
 
-    public EventApplication(EventController eventController, RegisterEventController registerEventController) {
+    public EventApplication(UserController userController,EventController eventController, RegisterEventController registerEventController) {
+        this.userController = userController;
         this.eventController = eventController;
         this.registerEventController =  registerEventController;
         scanner = new Scanner(System.in);
@@ -25,6 +28,11 @@ public class EventApplication {
     public void start() {
         System.out.println();
         System.out.println("You need register first");
+
+        System.out.println("Please enter your login");
+        String login = scanner.next();
+        System.out.println("Please enter your password");
+        String password = scanner.next();
         System.out.println("Please enter your name");
         String name = scanner.next();
         System.out.println("Please enter your surname");
@@ -32,8 +40,11 @@ public class EventApplication {
         System.out.println("Please enter your balance");
         Double balance = scanner.nextDouble();
 
-        User user = new User(name, surname, balance);
-        System.out.println("User was created!");
+        User user = new User(login,password,name, surname, balance);
+        String response = userController.CreateUser(user);
+        System.out.println(response);
+        System.out.println(user);
+
         while (true) {
 
             System.out.println();
