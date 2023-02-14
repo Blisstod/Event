@@ -99,7 +99,7 @@ public class EventApplication {
         int day = scanner.nextInt();
         LocalDate date = LocalDate.of(year, month, day);
 
-        String response = eventController.CreateEvent(name, price, description);
+        String response = eventController.CreateEvent(name, price, description, date);
         System.out.println(response);
     }
     public void getAllEventsMenu(){

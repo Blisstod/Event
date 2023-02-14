@@ -5,6 +5,7 @@ import com.company.entities.User;
 import com.company.repositories.EventRepositories;
 import com.company.repositories.interfaces.IEventRepositories;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class EventController {
     public EventController(IEventRepositories eventRepositories){
         this.eventRepositories = eventRepositories;
     }
-    public String CreateEvent(String name, double price, String description){
-        Event event = new Event(name, price, description);
+    public String CreateEvent(String name, double price, String description, LocalDate date){
+        Event event = new Event(name, price, description, date);
         boolean created = eventRepositories.CreateEvent(event);
         return (created ? "Event was created" : "Event creation was failed!");
     }
