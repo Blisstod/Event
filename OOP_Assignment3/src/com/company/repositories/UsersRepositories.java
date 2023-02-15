@@ -2,12 +2,13 @@ package com.company.repositories;
 
 import com.company.data.interfaces.IDB;
 import com.company.entities.User;
+import com.company.repositories.interfaces.IUsersRepositories;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UsersRepositories {
+public class UsersRepositories implements IUsersRepositories {
     private final IDB db;
     public UsersRepositories(IDB db){this.db = db;}
 
@@ -16,11 +17,8 @@ public class UsersRepositories {
         try {
             con = db.getConnection();
             String sql = "INSERT INTO tbl_users(name,surname,balance,login,password) VALUES (?,?,?,?,?)";
-            PreparedStatement st = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            st.executeUpdate();
-            ResultSet keys = st.getGeneratedKeys();
-            int id = keys.getInt(1);
-            user.setId(id);
+            PreparedStatement st = con.prepareStatement(sql);
+            
             st.setString(1, user.getName());
             st.setString(2, user.getSurname());
             st.setDouble(3, user.getBalance());
@@ -42,15 +40,27 @@ public class UsersRepositories {
         }
         return false;
     }
-    public boolean ValidUser(User user) {
+    public User SignIn(User userToCheck){
         Connection con = null;
+        User user = new User();
         try {
             con = db.getConnection();
-            String sql = "SELECT id FROM tbl_users WHERE login ="+user.getLogin()  + "AND"+user.getPassword();
+            String sql = "SELECT id,login,password,name,surname,balance FROM tbl_users";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            user.setId(rs.getInt("id"));
-            return true;
+            while (rs.next()) {
+                if (userToCheck.getPassword().equals(rs.getString("password"))) {
+                    user = new User(rs.getInt("id"),
+                            rs.getString("login"),
+                            rs.getString("password"),
+                            rs.getString("name"),
+                            rs.getString("surname"),
+                            rs.getDouble("balance"));
+                    return user;
+                }
+            }
+            return user;
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -61,6 +71,27 @@ public class UsersRepositories {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }
+        return null;
+    }
+    public boolean isExist(User user){
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT login,password FROM tbl_users";
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            List<User> users = new LinkedList<>();
+            while (rs.next()){
+                if (user.getPassword().equals(rs.getString("password")) &&
+                user.getLogin().equals(rs.getString("login"))){
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
