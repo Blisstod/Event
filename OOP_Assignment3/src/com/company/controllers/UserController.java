@@ -3,12 +3,12 @@ package com.company.controllers;
 import com.company.entities.Event;
 import com.company.entities.User;
 import com.company.repositories.UsersRepositories;
-import com.company.repositories.interfaces.IEventRepositories;
+import com.company.repositories.interfaces.IUsersRepositories;
 
 import java.util.List;
 
 public class UserController {
-    private final UsersRepositories usersRepositories;
+    private final IUsersRepositories usersRepositories;
     public UserController(UsersRepositories usersRepositories){
         this.usersRepositories = usersRepositories;
     }
