@@ -7,6 +7,8 @@ public class User {
     private String name;
     private String surname;
     private double balance;
+    public User(){}
+    
     public User(double balance){
         setBalance(balance);
     }
