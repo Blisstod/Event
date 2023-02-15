@@ -16,6 +16,7 @@ public class EventApplication {
     private final UserController userController;
     private RegisterEventController registerEventController;
     private final Scanner scanner;
+    private int failedAuthorization = 0;
 
 
     public EventApplication(UserController userController,EventController eventController, RegisterEventController registerEventController) {
@@ -26,24 +27,18 @@ public class EventApplication {
     }
 
     public void start() {
-        System.out.println();
-        System.out.println("You need register first");
+        User user = new User();
+        System.out.println("Choose one of the option:");
+        System.out.println("1. Sign in");
+        System.out.println("2. Sign up");
+        int option_reg = scanner.nextInt();
 
-        System.out.println("Please enter your login");
-        String login = scanner.next();
-        System.out.println("Please enter your password");
-        String password = scanner.next();
-        System.out.println("Please enter your name");
-        String name = scanner.next();
-        System.out.println("Please enter your surname");
-        String surname = scanner.next();
-        System.out.println("Please enter your balance");
-        Double balance = scanner.nextDouble();
-
-        User user = new User(login,password,name, surname, balance);
-        String response = userController.CreateUser(user);
-        System.out.println(response);
-        System.out.println(user);
+        if (option_reg == 1){
+            user = SignIn(user);
+        }
+        else if (option_reg == 2){
+            System.out.println(SignUp(user));
+        }
 
         while (true) {
 
@@ -90,6 +85,48 @@ public class EventApplication {
             System.out.println("*************************");
 
         }
+    }
+    public String SignUp(User user){
+        System.out.println("You need register first");
+        System.out.println("Please enter your login");
+        String login = scanner.next();
+        System.out.println("Please enter your password");
+        String password = scanner.next();
+        System.out.println("Please enter your name");
+        String name = scanner.next();
+        System.out.println("Please enter your surname");
+        String surname = scanner.next();
+        System.out.println("Please enter your balance");
+        Double balance = scanner.nextDouble();
+
+        user = new User(login, password, name, surname, balance);
+
+
+        String response = userController.CreateUser(user);
+        return response;
+    }
+    public User SignIn(User user){
+        System.out.println("You need sign in to your account!");
+        System.out.println("Please write your login:");
+        String login = scanner.next();
+        System.out.println("Please write your password:");
+        String password = scanner.next();
+
+        user = new User(login, password);
+        if(!userController.isExist(user)){
+            System.out.println("Incorrect password or login.");
+            if (failedAuthorization < 3) {
+                System.out.println("Please try again!");
+                failedAuthorization++;
+                SignIn(user);
+            } else if (failedAuthorization == 3) {
+                System.exit(0);
+            }
+        }
+        else {
+            user = userController.SignIn(user);
+        }
+        return user;
     }
 
     public void showMyBalance(User user){
