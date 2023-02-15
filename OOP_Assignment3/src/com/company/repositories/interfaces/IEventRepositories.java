@@ -7,6 +7,8 @@ import java.util.List;
 public interface IEventRepositories {
     boolean CreateEvent(Event event);
 
+    boolean DeleteEvent(Event event);
     List<Event> getAllEvents();
 
+    List<Event> getCreatedEvents();
 }

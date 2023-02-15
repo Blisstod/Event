@@ -19,7 +19,7 @@ public class EventRepositories implements IEventRepositories {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "INSERT INTO events(name,price,description) VALUES (?,?,?)";
+            String sql = "INSERT INTO user_events(name,price,description) VALUES (?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setString(1, event.getName());
@@ -41,7 +41,27 @@ public class EventRepositories implements IEventRepositories {
         }
         return false;
     }
+    @Override
+    public boolean DeleteEvent(Event event) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "DELETE FROM user_events WHERE id = ?";
+            PreparedStatement st = con.prepareStatement(sql);
 
+            st.setInt(1, event.getId());
+            st.executeUpdate();
+
+            st.close();
+            con.close();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error deleting event: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
     @Override
     public List<Event> getAllEvents() {
         Connection con = null;
@@ -62,6 +82,39 @@ public class EventRepositories implements IEventRepositories {
             }
 
             return events;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return null;
+    }
+    @Override
+    public List<Event> getCreatedEvents() {
+        Connection con = null;
+        try{
+            con = db.getConnection();
+            String sql = "SELECT id,name,price,description FROM user_events";
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+            List<Event> userEvents = new LinkedList<>();
+            while (rs.next()) {
+                Event event = new Event(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getDouble("price"),
+                        rs.getString("description"));
+
+                userEvents.add(event);
+            }
+
+            return userEvents;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {

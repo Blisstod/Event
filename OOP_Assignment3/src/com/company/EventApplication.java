@@ -56,6 +56,7 @@ public class EventApplication {
             System.out.println("4. Show registered events");
             System.out.println("5. Refund the event");
             System.out.println("6. Crete an event");
+            System.out.println("7. Delete an event");
             System.out.println("0. Exit");
             System.out.println();
             try {
@@ -73,6 +74,8 @@ public class EventApplication {
                     refundEvent(user);
                 } else if (option == 6) {
                     createEventMenu();
+                } else if (option == 7) {
+                    deleteEventMenu();
                 } else {
                     break;
                 }
@@ -102,6 +105,20 @@ public class EventApplication {
         String description = scanner.next();
 
         String response = eventController.CreateEvent(name, price, description);
+        System.out.println(response);
+    }
+    public void deleteEventMenu() {
+        System.out.println("Please, enter event's ID to delete.");
+        System.out.println("You can delete only you created events.");
+        int delId = scanner.nextInt();
+        List<Event> events = eventController.getEvents();
+        for (int i = 0; i < events.size(); i++) {
+            if (events.get(i).getId() == delId) {
+                events.remove(i);
+                break;
+            }
+        }
+        String response = eventController.DeleteEvent(delId);
         System.out.println(response);
     }
     public void getAllEventsMenu(){

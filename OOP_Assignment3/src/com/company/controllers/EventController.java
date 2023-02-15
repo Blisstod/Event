@@ -18,6 +18,16 @@ public class EventController {
         boolean created = eventRepositories.CreateEvent(event);
         return (created ? "Event was created" : "Event creation was failed!");
     }
+    public String DeleteEvent(int id) {
+        List<Event> events = eventRepositories.getCreatedEvents();
+        for (Event event : events) {
+            if (event.getId()==id){
+                boolean deleated = eventRepositories.DeleteEvent(event);
+                return (deleated ? "Event was deleated": "Event deleation was failed!");
+            }
+        }
+        return "There is no events with this ID";
+    }
     public Event FindEvent(int id){
         List<Event> events = eventRepositories.getAllEvents();
         Event regisEvent = new Event();
@@ -34,5 +44,15 @@ public class EventController {
         if (events.size() == 0)
             return "There is no any events!" + '\n' + "You need add your own event or wait for other events!";
         return events.toString();
+    }
+    public List<Event> getEvents() {
+        List<Event> events = eventRepositories.getAllEvents();
+        return events;
+    }
+    public String getCreatedEvents(){
+        List<Event> events = eventRepositories.getCreatedEvents();
+        if (events.size() == 0)
+            return "There is no any events!" + '\n' + "You need add your own event or wait for other events!";
+        return "These are the events you created:\n" + events.toString();
     }
 }
