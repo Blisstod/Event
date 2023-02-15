@@ -10,7 +10,12 @@ public class User {
     public User(double balance){
         setBalance(balance);
     }
-    public User(String name,String login,String password, String surname, double balance) {
+    public User(String login, String password){
+        //setId(id);
+        setLogin(login);
+        setPassword(password);
+    }
+    public User(String login, String password, String name, String surname, double balance) {
         setLogin(login);
         setPassword(password);
         setName(name);
