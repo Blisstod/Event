@@ -16,21 +16,13 @@ public class UserController {
         boolean created = usersRepositories.CreateUser(user);
         return (created ? "User was created" : "User creation failed!");
     }
-    public String AuthorizeUser(User user ){
-        boolean valid = usersRepositories.ValidUser(user);
-        return (valid ? "Logged in." : "Incorrect password or login.!");
+    public User SignIn(User userToCheck){
+        User user = usersRepositories.SignIn(userToCheck);
+        return user;
     }
-//    public Event FindEvent(int id){
-//        List<Event> events = eventRepositories.getAllEvents();
-//        Event regisEvent = new Event();
-//        for (Event event : events) {
-//            if (event.getId()==id){
-//                regisEvent = event;
-//                break;
-//            }
-//        }
-//        return regisEvent;
-//    }
+    public boolean isExist(User user){
+        return (usersRepositories.isExist(user)) ? true : false;
+    }
     public String getAllUsers(){
         List<User> users = usersRepositories.getAllUsers();
         if (users.size() == 0)
