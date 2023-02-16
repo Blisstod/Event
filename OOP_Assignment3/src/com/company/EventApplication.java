@@ -19,6 +19,7 @@ public class EventApplication {
     private int failedAuthorization = 0;
 
 
+    ///qwertyui
     public EventApplication(UserController userController,EventController eventController, RegisterEventController registerEventController) {
         this.userController = userController;
         this.eventController = eventController;

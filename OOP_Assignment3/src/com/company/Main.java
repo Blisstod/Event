@@ -13,6 +13,8 @@ import com.company.repositories.interfaces.IEventRepositories;
 
 public class Main {
     public static void main(String[] args) {
+
+        // nufasdfdsafghj
         IDB db = new PostgresDB();
         IEventRepositories eventRepositories = new EventRepositories(db);
         UsersRepositories usersRepositories = new UsersRepositories(db);
