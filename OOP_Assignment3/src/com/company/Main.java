@@ -9,7 +9,7 @@ import com.company.data.interfaces.IDB;
 import com.company.repositories.EventRepositories;
 import com.company.repositories.UsersRepositories;
 import com.company.repositories.interfaces.IEventRepositories;
-import com.company.repositories.interfaces.RegisEventRepositories;
+import com.company.repositories.RegisEventRepositories;
 
 
 public class Main {

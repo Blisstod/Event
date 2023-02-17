@@ -1,4 +1,4 @@
-package com.company.repositories.interfaces;
+package com.company.repositories;
 
 import com.company.data.interfaces.IDB;
 import com.company.entities.Event;
@@ -16,7 +16,7 @@ public class RegisEventRepositories {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "INSERT INTO user_registered_events(userID,eventID) VALUES (?,?)";
+            String sql = "INSERT INTO user_registered_events(user_id,event_id) VALUES (?,?)";
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setInt(1, userID);
@@ -42,7 +42,7 @@ public class RegisEventRepositories {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "DELETE FROM user_registered_events WHERE userID = ? AND  eventID = ?" ;
+            String sql = "DELETE FROM user_registered_events WHERE user_id = ? AND  event_id = ?" ;
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setInt(1, userID);
@@ -63,7 +63,7 @@ public class RegisEventRepositories {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "SELECT EventID FROM user_registered_events WHERE userID=" +  Integer.toString(userID);
+            String sql = "SELECT event_id FROM user_registered_events WHERE user_id=" +  Integer.toString(userID);
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);

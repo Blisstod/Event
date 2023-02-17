@@ -2,11 +2,9 @@ package com.company.controllers;
 
 import com.company.entities.Event;
 import com.company.entities.User;
-import com.company.repositories.interfaces.IEventRepositories;
-import com.company.repositories.interfaces.RegisEventRepositories;
+import com.company.repositories.RegisEventRepositories;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterEventController {
 //    private List<Event> registeredEvents = new ArrayList<>();
