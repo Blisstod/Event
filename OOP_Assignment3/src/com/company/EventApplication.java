@@ -7,6 +7,8 @@ import com.company.controllers.UserController;
 import com.company.entities.Event;
 import com.company.entities.User;
 import com.company.controllers.RegisterEventController;
+
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -36,6 +38,7 @@ public class EventApplication {
 
         if (option_reg == 1){
             user = SignIn(user);
+            System.out.println(user.toString());
         }
         else if (option_reg == 2){
             System.out.println(SignUp(user));
@@ -65,7 +68,7 @@ public class EventApplication {
                 } else if(option == 3){
                     registerToEvent(user);
                 } else if(option == 4){
-                    getRegisteredEvents();
+                    getRegisteredEvents(user);
                 } else if(option == 5){
                     refundEvent(user);
                 } else if (option == 6) {
@@ -173,11 +176,11 @@ public class EventApplication {
         else System.out.println("You do not have enough money to register " + eventToRegister.getName() + "!");
     }
     public void refundEvent(User user){
-        if(registerEventController.getRegisteredEvents().isEmpty()){
+        if(registerEventController.getRegisteredEvents(user.getId()).isEmpty()){
             System.out.println("No registered events to refund.");
         }
         else {
-            getRegisteredEvents();
+            getRegisteredEvents(user);
             System.out.println("Choose event Id.");
             int refund_event_id = scanner.nextInt();
             Event eventToRefund = eventController.FindEvent(refund_event_id);
@@ -186,15 +189,15 @@ public class EventApplication {
         }
 
     }
-    public void getRegisteredEvents(){
-        List<Event> registeredEvents = registerEventController.getRegisteredEvents();
-        if(registeredEvents.isEmpty()){
-            System.out.println("Nothing to show, register to event first.");
-        }
-        else {
-            for (Event event : registeredEvents) {
-                System.out.println(event.toString());
+    public void getRegisteredEvents(User user){
+//        List<Event> registeredEvents = registerEventController.getRegisteredEvents(user.getId()).stream().map(s->eventController.FindEvent(s));
+        ArrayList <Integer> registeredEvents = registerEventController.getRegisteredEvents(user.getId());
+//        if(registeredEvents.isEmpty()){
+//            System.out.println("Nothing to show, register to event first.");
+//        }
+//        else {
+            for ( int id : registeredEvents) {
+                System.out.println();
             }
         }
     }
-}

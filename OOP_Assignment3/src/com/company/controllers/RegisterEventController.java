@@ -2,51 +2,57 @@ package com.company.controllers;
 
 import com.company.entities.Event;
 import com.company.entities.User;
+import com.company.repositories.interfaces.IEventRepositories;
+import com.company.repositories.interfaces.RegisEventRepositories;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterEventController {
-    private List<Event> registeredEvents = new ArrayList<>();
-    public RegisterEventController(){
-
+//    private List<Event> registeredEvents = new ArrayList<>();
+    private final RegisEventRepositories regisEventRepositories;
+    public RegisterEventController(RegisEventRepositories regisEventRepositories){
+        this.regisEventRepositories = regisEventRepositories;
     }
+
     public boolean registerEvent(Event event, User user){
         if(event.getPrice()<= user.getBalance()) {
             user.pay(event.getPrice());
-            this.registeredEvents.add(event);
+            regisEventRepositories.register(user.getId(), event.getId());
+
             return true;
         }
         return false;
     }
     public boolean refundEvent(Event eventToRefund, User user){
-        boolean index = false;
-        for (Event event : this.getRegisteredEvents()) {
-            if (event.getId()==eventToRefund.getId()){
-                index = true;
-                break;
-            }
-        }
-        if(index) {
-            user.refund(eventToRefund.getPrice());
-    //        this.registeredEvents.remove(event);
-            List <Event> refundedEvents = new ArrayList<>();
-            for (Event validEvent : registeredEvents) {
-                if (validEvent.getId()!=eventToRefund.getId()){
-                    refundedEvents.add(eventToRefund);
-                }
-            }
-            setRegisteredEvents(refundedEvents);
-            return true;
-        }
-        return false;
+        regisEventRepositories.unregister(user.getId(),eventToRefund.getId());
+        user.refund(eventToRefund.getPrice());
+        return true;
+//        boolean index = false;
+//        for (Event event : this.getRegisteredEvents()) {
+//            if (event.getId()==eventToRefund.getId()){
+//                index = true;
+//                break;
+//            }
+//        }
+//        if(index) {
+//            user.refund(eventToRefund.getPrice());
+//    //        this.registeredEvents.remove(event);
+//            List <Event> refundedEvents = new ArrayList<>();
+//            for (Event validEvent : registeredEvents) {
+//                if (validEvent.getId()!=eventToRefund.getId()){
+//                    refundedEvents.add(eventToRefund);
+//                }
+//            }
+//            setRegisteredEvents(refundedEvents);
+//            return true;
+//        }
+//        return false;
     }
-    public List<Event> getRegisteredEvents (){
-        return registeredEvents;
+    public ArrayList<Integer>  getRegisteredEvents (int userId){
+        return regisEventRepositories.getAllRegisEvents( userId);
     }
 
 
-    public void setRegisteredEvents(List<Event> registeredEvents) {
-        this.registeredEvents = registeredEvents;
-    }
+
 }
