@@ -148,7 +148,7 @@ public class EventApplication {
         System.out.println(response);
     }
     public void deleteEventMenu() {
-        getAllEventsMenu();
+        eventController.getCreatedEvents();
         System.out.println("Please, enter event's ID to delete.");
         System.out.println("You can delete only you created events.");
         int delId = scanner.nextInt();
@@ -164,7 +164,9 @@ public class EventApplication {
     }
     public void getAllEventsMenu(){
         String response = eventController.getAllEvents();
+        String response2 = eventController.getCreatedEvents();
         System.out.println(response);
+        System.out.println(response2);
     }
     public void registerToEvent(User user){
         getAllEventsMenu();
