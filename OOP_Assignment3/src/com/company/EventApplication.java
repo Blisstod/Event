@@ -143,12 +143,11 @@ public class EventApplication {
         Double price = scanner.nextDouble();
         System.out.println("Please write description about this event");
         String description = scanner.next();
-
-        String response = eventController.CreateEvent(name, price, description);
+        String response = eventController.CreateEvent(name, price, description, date);
         System.out.println(response);
     }
     public void deleteEventMenu() {
-        getAllEventsMenu();
+        eventController.getCreatedEvents();
         System.out.println("Please, enter event's ID to delete.");
         System.out.println("You can delete only you created events.");
         int delId = scanner.nextInt();
@@ -164,7 +163,9 @@ public class EventApplication {
     }
     public void getAllEventsMenu(){
         String response = eventController.getAllEvents();
+        String response2 = eventController.getCreatedEvents();
         System.out.println(response);
+        System.out.println(response2);
     }
     public void registerToEvent(User user){
         getAllEventsMenu();

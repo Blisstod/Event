@@ -12,14 +12,14 @@ public class Event {
     private LocalDate date;
     //private Calendar calendar = new GregorianCalendar();
     public Event(){}
-    public Event(String name, double price, String description /*Calendar calendar*/){
+    public Event(String name, double price, String description, LocalDate date /*Calendar calendar*/){
         setName(name);
         setPrice(price);
         setDescription(description);
-        //this.calendar = calendar;
+        setDate(date);
     }
-    public Event(int id, String name, double price, String description /*Calendar calendar*/){
-        this(name, price, description /*calendar*/);
+    public Event(int id, String name, double price, String description, LocalDate date /*Calendar calendar*/){
+        this(name, price, description, date /*calendar*/);
         setId(id);
     }
 
@@ -65,7 +65,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "{" + id + " | " + name + " | " + price + " | " + description + "}" + '\n';
+        return "{" + id + " | " + name + " | " + price + " | " + description + " | " + date + "}" + '\n';
     }
     
 }
