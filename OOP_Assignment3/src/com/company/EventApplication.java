@@ -144,8 +144,7 @@ public class EventApplication {
         Double price = scanner.nextDouble();
         System.out.println("Please write description about this event");
         String description = scanner.next();
-
-        String response = eventController.CreateEvent(name, price, description);
+        String response = eventController.CreateEvent(name, price, description, date);
         System.out.println(response);
     }
     public void deleteEventMenu() {
