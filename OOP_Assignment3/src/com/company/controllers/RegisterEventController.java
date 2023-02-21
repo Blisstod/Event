@@ -5,6 +5,7 @@ import com.company.entities.User;
 import com.company.repositories.RegisEventRepositories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterEventController {
 //    private List<Event> registeredEvents = new ArrayList<>();
@@ -47,7 +48,7 @@ public class RegisterEventController {
 //        }
 //        return false;
     }
-    public ArrayList<Integer>  getRegisteredEvents (int userId){
+    public List<Integer> getRegisteredEvents (int userId){
         return regisEventRepositories.getAllRegisEvents( userId);
     }
 

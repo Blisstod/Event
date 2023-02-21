@@ -49,7 +49,8 @@ public class UsersRepositories implements IUsersRepositories {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                if (userToCheck.getPassword().equals(rs.getString("password"))) {
+                if (userToCheck.getPassword().equals(rs.getString("password")) &&
+                        userToCheck.getLogin().equals(rs.getString("login"))) {
                     user = new User(rs.getInt("id"),
                             rs.getString("login"),
                             rs.getString("password"),

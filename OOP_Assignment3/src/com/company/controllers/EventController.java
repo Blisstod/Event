@@ -39,6 +39,10 @@ public class EventController {
         }
         return regisEvent;
     }
+    public String getEventById(int eventId){
+        Event event = eventRepositories.getEventById(eventId);
+        return event.toString();
+    }
     public String getAllEvents(){
         List<Event> events = eventRepositories.getAllEvents();
         if (events.size() == 0)
@@ -48,11 +52,5 @@ public class EventController {
     public List<Event> getEvents() {
         List<Event> events = eventRepositories.getAllEvents();
         return events;
-    }
-    public String getCreatedEvents(){
-        List<Event> events = eventRepositories.getCreatedEvents();
-        if (events.size() == 0)
-            return "There is no any events!" + '\n' + "You need add your own event or wait for other events!";
-        return "These are the events you created:\n" + events.toString();
     }
 }

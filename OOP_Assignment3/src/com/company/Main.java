@@ -24,6 +24,5 @@ public class Main {
         RegisterEventController registerEventController = new RegisterEventController(regisEventRepositories);
         EventApplication app = new EventApplication(userController,eventController,registerEventController);
         app.start();
-        //test additional
     }
 }

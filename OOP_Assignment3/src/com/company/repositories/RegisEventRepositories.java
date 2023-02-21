@@ -16,7 +16,7 @@ public class RegisEventRepositories {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "INSERT INTO user_registered_events(user_id,event_id) VALUES (?,?)";
+            String sql = "INSERT INTO user_registered_events(userid,eventid) VALUES (?,?)";
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setInt(1, userID);
@@ -42,7 +42,7 @@ public class RegisEventRepositories {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "DELETE FROM user_registered_events WHERE user_id = ? AND  event_id = ?" ;
+            String sql = "DELETE FROM user_registered_events WHERE userid = ? AND  eventid = ?" ;
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setInt(1, userID);
@@ -59,27 +59,19 @@ public class RegisEventRepositories {
         }
         return false;
     }
-    public ArrayList <Integer> getAllRegisEvents(int userID) {
+    public List <Integer> getAllRegisEvents(int userID) {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "SELECT event_id FROM user_registered_events WHERE user_id=" +  Integer.toString(userID);
+            String converted = Integer.toString(userID);
+            String sql = "SELECT id, userid, eventid FROM user_registered_events WHERE userid=" + converted;
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
-            ArrayList <Integer> regEventsId = new ArrayList<>();
+            List<Integer> regEventsId = new ArrayList<>();
             while (rs.next()) {
-                regEventsId.add(rs.getInt("id"));
+                regEventsId.add(rs.getInt("eventid"));
             }
-
-//            List<Integer> al = new ArrayList<Integer>();
-//            al.add(10);
-//            al.add(20);
-//            al.add(30);
-//            al.add(40);
-//
-//            Integer[] arr = new Integer[al.size()];
-//            arr = al.toArray(arr);
 
             return regEventsId;
         } catch (SQLException throwables) {

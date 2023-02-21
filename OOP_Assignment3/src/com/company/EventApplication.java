@@ -21,7 +21,6 @@ public class EventApplication {
     private int failedAuthorization = 0;
 
 
-    ///qwertyui
     public EventApplication(UserController userController,EventController eventController, RegisterEventController registerEventController) {
         this.userController = userController;
         this.eventController = eventController;
@@ -173,7 +172,7 @@ public class EventApplication {
         int regis_id = scanner.nextInt();
         Event eventToRegister = eventController.FindEvent(regis_id);
         if (registerEventController.registerEvent(eventToRegister, user))
-            System.out.println("Succesfully registered to: " + eventToRegister.getName());
+            System.out.println("Successfully registered to: " + eventToRegister.getName());
         else System.out.println("You do not have enough money to register " + eventToRegister.getName() + "!");
     }
     public void refundEvent(User user){
@@ -186,19 +185,20 @@ public class EventApplication {
             int refund_event_id = scanner.nextInt();
             Event eventToRefund = eventController.FindEvent(refund_event_id);
             System.out.println(registerEventController.refundEvent(eventToRefund, user)?
-                    "Succesfully refunded event: " +eventToRefund.getName():"couldn refund the event:"+eventToRefund.getName()+".");
+                    "Successfully refunded event: " +eventToRefund.getName():"Couldn't refund the event:"+eventToRefund.getName()+".");
         }
 
     }
-    public void getRegisteredEvents(User user){
-//        List<Event> registeredEvents = registerEventController.getRegisteredEvents(user.getId()).stream().map(s->eventController.FindEvent(s));
-        ArrayList <Integer> registeredEvents = registerEventController.getRegisteredEvents(user.getId());
-//        if(registeredEvents.isEmpty()){
-//            System.out.println("Nothing to show, register to event first.");
-//        }
-//        else {
-            for ( int id : registeredEvents) {
-                System.out.println();
+    public void getRegisteredEvents(User user) {
+        List<Integer> registeredEvents = registerEventController.getRegisteredEvents(user.getId());
+        String response = "";
+        if (registeredEvents.size() == 0) {
+            response += "There is no any events. You need to register at least one event!";
+        } else {
+            for (int id : registeredEvents) {
+                response += eventController.getEventById(id);
             }
+            System.out.println(response);
         }
     }
+}

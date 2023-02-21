@@ -62,6 +62,37 @@ public class EventRepositories implements IEventRepositories {
         }
         return false;
     }
+    public Event getEventById(int id){
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String converted = Integer.toString(id);
+            String sql = "SELECT id,name,price,description FROM events WHERE id=" + converted;
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+            Event event = new Event();
+            if(rs.next())
+                event = new Event(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getDouble("price"),
+                        rs.getString("description"));
+
+
+            return event;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return null;
+    }
     @Override
     public List<Event> getAllEvents() {
         Connection con = null;
