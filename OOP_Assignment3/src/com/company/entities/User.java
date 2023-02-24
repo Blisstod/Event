@@ -2,6 +2,8 @@ package com.company.entities;
 
 public class User extends Human {
     private double balance;
+    private String login;
+    private String password;
 
     public User(){}
 
@@ -32,6 +34,21 @@ public class User extends Human {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void pay(double price) {
