@@ -50,6 +50,12 @@ public class EventController {
             return "There is no any events!" + '\n' + "You need add your own event or wait for other events!";
         return events.toString();
     }
+    public String getCreatedEvents(){
+        List<Event> events = eventRepositories.getCreatedEvents();
+        if (events.size() == 0)
+            return "There is no any events!" + '\n' + "You need add your own event or wait for other events!";
+        return "These are the events you created:\n" + events.toString();
+    }
     public List<Event> getEvents() {
         List<Event> events = eventRepositories.getAllEvents();
         return events;
