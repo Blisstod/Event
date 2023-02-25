@@ -23,8 +23,8 @@ public class EventController {
         List<Event> events = eventRepositories.getCreatedEvents();
         for (Event event : events) {
             if (event.getId()==id){
-                boolean deleated = eventRepositories.DeleteEvent(event);
-                return (deleated ? "Event was deleated": "Event deleation was failed!");
+                boolean deleted = eventRepositories.DeleteEvent(event);
+                return (deleted ? "Event was deleted": "Event deletion was failed!");
             }
         }
         return "There is no events with this ID";

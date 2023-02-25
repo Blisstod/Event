@@ -18,7 +18,7 @@ public class UsersRepositories implements IUsersRepositories {
             con = db.getConnection();
             String sql = "INSERT INTO tbl_users(name,surname,balance,login,password) VALUES (?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
-            
+
             st.setString(1, user.getName());
             st.setString(2, user.getSurname());
             st.setDouble(3, user.getBalance());
@@ -85,7 +85,7 @@ public class UsersRepositories implements IUsersRepositories {
             List<User> users = new LinkedList<>();
             while (rs.next()){
                 if (user.getPassword().equals(rs.getString("password")) &&
-                user.getLogin().equals(rs.getString("login"))){
+                        user.getLogin().equals(rs.getString("login"))){
                     return true;
                 }
             }

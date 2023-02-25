@@ -11,17 +11,21 @@ import java.util.List;
 public class RegisEventRepositories {
     private final IDB db;
     public RegisEventRepositories(IDB db){this.db = db;}
-    public boolean register(int userID, int eventID ){
+    public boolean register(int userID, int eventID, double userBalancePayed){
 
         Connection con = null;
         try {
             con = db.getConnection();
+            String update_balance = "UPDATE tbl_users set balance = ? WHERE id =" + Integer.toString(userID);
             String sql = "INSERT INTO user_registered_events(userid,eventid) VALUES (?,?)";
             PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement st2 = con.prepareStatement(update_balance);
 
+            st2.setDouble(1, userBalancePayed);
             st.setInt(1, userID);
             st.setInt(2, eventID);
 
+            st2.executeUpdate();
             st.execute();
             return true;
         } catch (SQLException throwables) {
@@ -38,15 +42,19 @@ public class RegisEventRepositories {
         return false;
 
     }
-    public boolean unregister(int userID, int eventID){
+    public boolean unregister(int userID, int eventID, double userBalanceRefunded){
         Connection con = null;
         try {
             con = db.getConnection();
+            String update_balance = "UPDATE tbl_users set balance = ? WHERE id =" + Integer.toString(userID);
             String sql = "DELETE FROM user_registered_events WHERE userid = ? AND  eventid = ?" ;
             PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement st2 = con.prepareStatement(update_balance);
 
+            st2.setDouble(1, userBalanceRefunded);
             st.setInt(1, userID);
-            st.setInt(1, eventID);
+            st.setInt(2, eventID);
+            st2.executeUpdate();
             st.executeUpdate();
 
             st.close();

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterEventController {
-//    private List<Event> registeredEvents = new ArrayList<>();
+    //    private List<Event> registeredEvents = new ArrayList<>();
     private final RegisEventRepositories regisEventRepositories;
     public RegisterEventController(RegisEventRepositories regisEventRepositories){
         this.regisEventRepositories = regisEventRepositories;
@@ -16,42 +16,19 @@ public class RegisterEventController {
 
     public boolean registerEvent(Event event, User user){
         if(event.getPrice()<= user.getBalance()) {
-            user.pay(event.getPrice());
-            regisEventRepositories.register(user.getId(), event.getId());
-
+            double userBalancePayed = user.pay(event.getPrice());
+            regisEventRepositories.register(user.getId(), event.getId(), userBalancePayed);
             return true;
         }
         return false;
     }
     public boolean refundEvent(Event eventToRefund, User user){
-        regisEventRepositories.unregister(user.getId(),eventToRefund.getId());
-        user.refund(eventToRefund.getPrice());
+        double userBalanceRefunded = user.refund(eventToRefund.getPrice());
+        regisEventRepositories.unregister(user.getId(),eventToRefund.getId(), userBalanceRefunded);
         return true;
-//        boolean index = false;
-//        for (Event event : this.getRegisteredEvents()) {
-//            if (event.getId()==eventToRefund.getId()){
-//                index = true;
-//                break;
-//            }
-//        }
-//        if(index) {
-//            user.refund(eventToRefund.getPrice());
-//    //        this.registeredEvents.remove(event);
-//            List <Event> refundedEvents = new ArrayList<>();
-//            for (Event validEvent : registeredEvents) {
-//                if (validEvent.getId()!=eventToRefund.getId()){
-//                    refundedEvents.add(eventToRefund);
-//                }
-//            }
-//            setRegisteredEvents(refundedEvents);
-//            return true;
-//        }
-//        return false;
     }
     public List<Integer> getRegisteredEvents (int userId){
         return regisEventRepositories.getAllRegisEvents( userId);
     }
-
-
 
 }

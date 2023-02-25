@@ -39,5 +39,5 @@ public abstract class Human {
                 ", surname='" + surname + '\'' +
                 '}';
     }
-    public abstract void pay(double price);
+    public abstract double pay(double price);
 }

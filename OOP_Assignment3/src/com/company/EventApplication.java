@@ -8,6 +8,8 @@ import com.company.entities.Event;
 import com.company.entities.User;
 import com.company.controllers.RegisterEventController;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -19,8 +21,6 @@ public class EventApplication {
     private RegisterEventController registerEventController;
     private final Scanner scanner;
     private int failedAuthorization = 0;
-
-
     public EventApplication(UserController userController,EventController eventController, RegisterEventController registerEventController) {
         this.userController = userController;
         this.eventController = eventController;
@@ -143,6 +143,10 @@ public class EventApplication {
         Double price = scanner.nextDouble();
         System.out.println("Please write description about this event");
         String description = scanner.next();
+        System.out.println("Please enter event date (m/d/yyyy)");
+        String userInput = scanner.next();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate date = LocalDate.parse(userInput, dateFormat);
         String response = eventController.CreateEvent(name, price, description, date);
         System.out.println(response);
     }

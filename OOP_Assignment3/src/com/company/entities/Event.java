@@ -54,18 +54,18 @@ public class Event {
     public String getDescription() {
         return description;
     }
-    
+
     public LocalDate getDate() {
         return date;
     }
-    
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return "{" + id + " | " + name + " | " + price + " | " + description + " | " + date + "}" + '\n';
+        return id + " | " + name + " | " + price + " | " + description + " | " + date + '\n';
     }
-    
+
 }

@@ -51,12 +51,14 @@ public class User extends Human {
         return password;
     }
 
-    public void pay(double price) {
+    public double pay(double price) {
         this.balance = balance - price;
+        return balance;
     }
 
-    public void refund(double price) {
+    public double refund(double price) {
         this.balance = balance + price;
+        return balance;
     }
 
     public double getBalance() {

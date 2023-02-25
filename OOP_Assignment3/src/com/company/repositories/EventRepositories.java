@@ -68,7 +68,7 @@ public class EventRepositories implements IEventRepositories {
         try {
             con = db.getConnection();
             String converted = Integer.toString(id);
-            String sql = "SELECT id,name,price,description FROM events WHERE id=" + converted;
+            String sql = "SELECT id,name,price,description,date FROM events WHERE id=" + converted;
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
@@ -77,7 +77,8 @@ public class EventRepositories implements IEventRepositories {
                 event = new Event(rs.getInt("id"),
                         rs.getString("name"),
                         rs.getDouble("price"),
-                        rs.getString("description"));
+                        rs.getString("description"),
+                        rs.getDate("date").toLocalDate());
 
 
             return event;
@@ -133,7 +134,7 @@ public class EventRepositories implements IEventRepositories {
         Connection con = null;
         try{
             con = db.getConnection();
-            String sql = "SELECT id,name,price,description FROM user_events";
+            String sql = "SELECT id,name,price,description,date FROM user_events";
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
@@ -142,7 +143,8 @@ public class EventRepositories implements IEventRepositories {
                 Event event = new Event(rs.getInt("id"),
                         rs.getString("name"),
                         rs.getDouble("price"),
-                        rs.getString("description"));
+                        rs.getString("description"),
+                        rs.getDate("date").toLocalDate());
 
                 userEvents.add(event);
             }
