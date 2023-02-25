@@ -42,18 +42,23 @@ public class EventRepositories implements IEventRepositories {
         }
         return false;
     }
+
     @Override
     public boolean DeleteEvent(Event event) {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "DELETE FROM user_events WHERE id = ?";
+            String sql = "DELETE FROM events WHERE id = ?";
+            String sql2 = "DELETE FROM user_registered_events WHERE eventid = ?";
             PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement st2 = con.prepareStatement(sql2);
 
+            st2.setInt(1, event.getId());
             st.setInt(1, event.getId());
             st.executeUpdate();
-
+            st2.executeUpdate();
             st.close();
+            st2.close();
             con.close();
             return true;
         } catch (SQLException e) {
@@ -116,40 +121,6 @@ public class EventRepositories implements IEventRepositories {
             }
 
             return events;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-        return null;
-    }
-    @Override
-    public List<Event> getCreatedEvents() {
-        Connection con = null;
-        try{
-            con = db.getConnection();
-            String sql = "SELECT id,name,price,description,date FROM user_events";
-            Statement st = con.createStatement();
-
-            ResultSet rs = st.executeQuery(sql);
-            List<Event> userEvents = new LinkedList<>();
-            while (rs.next()) {
-                Event event = new Event(rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getDouble("price"),
-                        rs.getString("description"),
-                        rs.getDate("date").toLocalDate());
-
-                userEvents.add(event);
-            }
-
-            return userEvents;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {

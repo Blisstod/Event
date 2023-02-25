@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterEventController {
-    //    private List<Event> registeredEvents = new ArrayList<>();
     private final RegisEventRepositories regisEventRepositories;
     public RegisterEventController(RegisEventRepositories regisEventRepositories){
         this.regisEventRepositories = regisEventRepositories;

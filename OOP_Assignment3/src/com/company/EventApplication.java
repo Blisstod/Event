@@ -10,7 +10,6 @@ import com.company.controllers.RegisterEventController;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -151,7 +150,8 @@ public class EventApplication {
         System.out.println(response);
     }
     public void deleteEventMenu() {
-        eventController.getCreatedEvents();
+        String response = eventController.getAllEvents();
+        System.out.println(response);
         System.out.println("Please, enter event's ID to delete.");
         System.out.println("You can delete only you created events.");
         int delId = scanner.nextInt();
@@ -162,14 +162,13 @@ public class EventApplication {
                 break;
             }
         }
-        String response = eventController.DeleteEvent(delId);
-        System.out.println(response);
+
+        String response1 = eventController.DeleteEvent(delId);
+        System.out.println(response1);
     }
     public void getAllEventsMenu(){
         String response = eventController.getAllEvents();
-        String response2 = eventController.getCreatedEvents();
         System.out.println(response);
-        System.out.println(response2);
     }
     public void registerToEvent(User user){
         getAllEventsMenu();

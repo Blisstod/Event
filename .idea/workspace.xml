@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="51643160-26ba-4fe4-b16b-2c5c694498e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/EventApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/EventApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/EventController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/RegisterEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/RegisterEventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/Human.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/EventRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/EventRepositories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/RegisEventRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/RegisEventRepositories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/UsersRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/UsersRepositories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/interfaces/IEventRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/interfaces/IEventRepositories.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +19,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2MDW0rr1sdH1kU9dgjmnfFIxlgz" />
   <component name="ProjectViewState">
@@ -46,5 +48,16 @@
       <updated>1677302413530</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

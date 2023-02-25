@@ -11,5 +11,4 @@ public interface IEventRepositories {
     boolean DeleteEvent(Event event);
     List<Event> getAllEvents();
     Event getEventById(int id);
-    List<Event> getCreatedEvents();
 }
