@@ -11,7 +11,28 @@ import java.util.List;
 public class UsersRepositories implements IUsersRepositories {
     private final IDB db;
     public UsersRepositories(IDB db){this.db = db;}
+    public boolean addMoney(Double addBalance, User user){
+        Connection con = null;
+        try{
+            con = db.getConnection();
+            String update_balance = "UPDATE tbl_users set balance = ? WHERE id =" + Integer.toString(user.getId());
+            PreparedStatement st = con.prepareStatement(update_balance);
 
+            st.setDouble(1, addBalance);
+            st.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
     public boolean CreateUser(User user) {
         Connection con = null;
         try {

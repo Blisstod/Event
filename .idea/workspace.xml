@@ -7,10 +7,20 @@
     <list default="true" id="51643160-26ba-4fe4-b16b-2c5c694498e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/EventApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/EventApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/RegisterEventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/RegisterEventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/EventRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/EventRepositories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/interfaces/IEventRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/interfaces/IEventRepositories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/UsersRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/UsersRepositories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/interfaces/IUsersRepositories.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_Assignment3/src/com/company/repositories/interfaces/IUsersRepositories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/EventApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/EventApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/controllers/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/controllers/EventController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/controllers/RegisterEventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/controllers/RegisterEventController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/controllers/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/entities/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/entities/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/entities/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/repositories/EventRepositories.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/repositories/EventRepositories.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/repositories/UsersRepositories.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/repositories/UsersRepositories.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Evenуt/com/company/repositories/interfaces/IUsersRepositories.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Evenуt/com/company/repositories/interfaces/IUsersRepositories.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +45,8 @@
     "last_opened_file_path": "C:/Users/fifty/Downloads/postgresql-42.5.3.jar",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

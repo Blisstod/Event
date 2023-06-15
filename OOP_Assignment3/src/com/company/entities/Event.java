@@ -1,8 +1,6 @@
 package com.company.entities;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Event {
     private int id;
@@ -10,9 +8,8 @@ public class Event {
     private double price;
     private String description;
     private LocalDate date;
-    //private Calendar calendar = new GregorianCalendar();
     public Event(){}
-    public Event(String name, double price, String description, LocalDate date /*Calendar calendar*/){
+    public Event(String name, double price, String description, LocalDate date){
         setName(name);
         setPrice(price);
         setDescription(description);

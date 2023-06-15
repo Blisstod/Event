@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IUsersRepositories {
     boolean CreateUser(User user);
+    boolean addMoney(Double addBalance, User user);
     User SignIn(User userToCheck);
     boolean isExist(User user);
     List<User> getAllUsers();

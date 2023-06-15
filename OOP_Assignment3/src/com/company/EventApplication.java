@@ -54,6 +54,7 @@ public class EventApplication {
             System.out.println("5. Refund the event");
             System.out.println("6. Crete an event");
             System.out.println("7. Delete an event");
+            System.out.println("8. Add money");
             System.out.println("0. Exit");
             System.out.println();
             try {
@@ -73,7 +74,10 @@ public class EventApplication {
                     createEventMenu();
                 } else if (option == 7) {
                     deleteEventMenu();
-                } else {
+                } else if (option == 8){
+                    addMoneyMenu(user);
+                }
+                else {
                     break;
                 }
             } catch (InputMismatchException e) {
@@ -130,7 +134,13 @@ public class EventApplication {
         }
         return user;
     }
-
+    public void addMoneyMenu(User user){
+        System.out.println("Please enter number to add to your balance:");
+        Double addBalance = scanner.nextDouble();
+        addBalance += user.getBalance();
+        String response = userController.addMoney(addBalance, user);
+        System.out.println(response);
+    }
     public void showMyBalance(User user){
         System.out.println("Your balance is: ");
         System.out.println(user.getBalance());

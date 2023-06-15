@@ -30,6 +30,7 @@ public class User extends Human {
         setPassword(password);
         setName(name);
         setSurname(surname);
+        setBalance(balance);
     }
 
     public void setBalance(double balance) {

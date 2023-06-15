@@ -16,6 +16,10 @@ public class UserController {
         boolean created = usersRepositories.CreateUser(user);
         return (created ? "User was created" : "User creation failed!");
     }
+    public String addMoney(Double addBalance, User user){
+        boolean added = usersRepositories.addMoney(addBalance, user);
+        return (added ? "Balance was added" : "Balance adding was failed!");
+    }
     public User SignIn(User userToCheck){
         User user = usersRepositories.SignIn(userToCheck);
         return user;
